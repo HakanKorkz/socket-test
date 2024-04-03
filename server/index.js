@@ -7,17 +7,22 @@ const io = new Server(httpServer,{
         origin: "*"
     }
 });
-
 io.on("connection", (socket) => {
     console.log("Bir kullanıcı bağlandı",socket.id);
 
     socket.on("client", (arg) => {
+        console.log(arg)
         io.emit("client", arg);
     })
 
     socket.on("spin",(spin)=>{
-        console.log(spin)
+       // console.log(spin)
+
         io.emit("spin",spin)
+    })
+
+    socket.on("php-client", (arg) => {
+        console.log(arg)
     })
 
     socket.on("disconnect", () => {
@@ -25,4 +30,6 @@ io.on("connection", (socket) => {
     });
 });
 
-httpServer.listen(5000);
+httpServer.listen(3000);
+
+// Mert aşan = Gelecekte nasıl bir developer  olacağını bu gün yaptıkların belirleyecek

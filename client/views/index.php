@@ -33,7 +33,7 @@
             <div>
                 <button type="submit"
                         class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Sign in
+                    Yolla
                 </button>
             </div>
         </form>
@@ -65,21 +65,23 @@ pointer-events: none">
 
     const textInput = document.getElementById("text");
     const formElement = document.querySelector("form");
-    // formElement.addEventListener("submit", (e) => {
-    //     e.preventDefault();
-    //     fetch("/client/elephant-io", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({text: textInput.value})
-    //     }).then(res => res.json()).then(data => {
-    //         console.log(data)
-    //     }).catch(er=>console.log(er))
-    //
-    // })
 
-    const socket = io("http://localhost:5000");
+    const socket = io("ws://localhost:3000");
+
+    formElement.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch("/client/elephant-io", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({text: textInput.value})
+        }).then(res => res.json()).then(data => {
+            console.log(data)
+        }).catch(er=>console.log(er))
+
+    })
+
 
     // socket.on("connect", () => {
     //     console.log("Bağlantı kuruldu: ", socket.id);
@@ -113,23 +115,23 @@ pointer-events: none">
         dataList(args)
     })
 
-    formElement.addEventListener("submit", (e) => {
-        e.preventDefault();
-        socket.emit("client", [{
-            id: 1,
-            title: textInput.value,
-            image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-        }]);
-        engine.on("packetCreate", ({type, data}) => {
-            // called for each packet sent
-            console.log(type, data);
-        })
-        socket.on("client", (args) => {
-            dataList(args)
-        })
-
-        //  engine.transport.close();
-    })
+    // formElement.addEventListener("submit", (e) => {
+    //     e.preventDefault();
+    //     socket.emit("client", [{
+    //         id: 1,
+    //         title: textInput.value,
+    //         image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+    //     }]);
+    //     engine.on("packetCreate", ({type, data}) => {
+    //         // called for each packet sent
+    //         console.log(type, data);
+    //     })
+    //     socket.on("client", (args) => {
+    //         dataList(args)
+    //     })
+    //
+    //     //  engine.transport.close();
+    // })
 
     const dataList = (data) => {
         const list = document.getElementById("list")

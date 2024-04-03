@@ -1,6 +1,7 @@
 <?php
 
 namespace Socket\Client\Controllers;
+
 use ElephantIO\Client;
 use Socket\Client\Router\View;
 
@@ -14,15 +15,20 @@ class TestController
 
     public static function elephantIoStatic($request)
     {
-       $elephantUrl="http://localhost:5000";
 
-       $options = ["client"=>Client::CLIENT_4X];
+        $elephantUrl = "ws://localhost:3000";
 
-       $client=Client::create($elephantUrl,$options);
+        $options = ["client" => Client::CLIENT_4X];
 
-       $client->emit("myEvent",$request);
+        $client = Client::create($elephantUrl, $options);
+
+        $client->emit("php-client", ["data" => "abcd"]);
+
+        echo "<pre>";
+        var_dump($client);
+
+
     }
-
 
 
 }

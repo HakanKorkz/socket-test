@@ -16,6 +16,12 @@
     "php": "8.2.*",
     "vlucas/phpdotenv": "^5.5",
     "ext-pdo": "*",
-    "elephantio/elephant.io": "^4.7"
-  }
+    "elephantio/elephant.io": "dev-master"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/hakankorkz/elephant.io.git"
+    }
+  ]
 }
