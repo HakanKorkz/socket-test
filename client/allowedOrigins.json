@@ -1,0 +1,5 @@
+{
+  "allowedOrigins": [
+    "https://socket-test.test/client/"
+  ]
+}

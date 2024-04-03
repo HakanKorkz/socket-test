@@ -1,0 +1,28 @@
+<?php
+
+namespace Socket\Client\Controllers;
+use ElephantIO\Client;
+use Socket\Client\Router\View;
+
+class TestController
+{
+
+    public static function mainStatic(): null
+    {
+        return View::render("index");
+    }
+
+    public static function elephantIoStatic($request)
+    {
+       $elephantUrl="http://localhost:5000";
+
+       $options = ["client"=>Client::CLIENT_4X];
+
+       $client=Client::create($elephantUrl,$options);
+
+       $client->emit("myEvent",$request);
+    }
+
+
+
+}

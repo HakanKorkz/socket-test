@@ -1,0 +1,21 @@
+{
+  "name": "socket/client",
+  "version": "0.1",
+  "autoload": {
+    "psr-4": {
+      "Socket\\Client\\": "App/"
+    }
+  },
+  "authors": [
+    {
+      "name": "hakan",
+      "email": "hakan.hizmet.54.gs@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "8.2.*",
+    "vlucas/phpdotenv": "^5.5",
+    "ext-pdo": "*",
+    "elephantio/elephant.io": "^4.7"
+  }
+}
